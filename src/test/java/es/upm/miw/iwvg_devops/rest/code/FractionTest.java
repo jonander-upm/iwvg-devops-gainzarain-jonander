@@ -4,9 +4,9 @@ import es.upm.miw.iwvg_devops.code.Fraction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class FractionTest {
+class FractionTest {
 
     private Fraction fraction;
 
@@ -49,5 +49,35 @@ public class FractionTest {
                 ", denominator=4" +
                 '}';
         assertEquals(expectedString, fraction.toString());
+    }
+
+    @Test
+    void testIsProper() {
+        assertFalse(fraction.isProper());
+    }
+
+    @Test
+    void testIsImproper() {
+        assertTrue(fraction.isImproper());
+    }
+
+    @Test
+    void testIsEquivalent() {
+        assertTrue(fraction.isEquivalent(new Fraction(1, 2)));
+    }
+
+    @Test
+    void testAdd() {
+        assertEquals(1, fraction.add(new Fraction(1, 2)).decimal());
+    }
+
+    @Test
+    void testMultiply() {
+        assertEquals(0.25, fraction.multiply(new Fraction(1, 2)).decimal());
+    }
+
+    @Test
+    void testDivide() {
+        assertEquals(1, fraction.divide(new Fraction(1, 2)).decimal());
     }
 }
