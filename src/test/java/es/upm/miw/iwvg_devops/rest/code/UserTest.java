@@ -15,74 +15,74 @@ public class UserTest {
     private User user;
 
     @BeforeEach
-    public void before() {
+    void before() {
         List<Fraction> fractions = new ArrayList<>(List.of(new Fraction(), new Fraction(), new Fraction()));
         user = new User("1", "Test", "User", fractions);
     }
 
     @Test
-    public void testUserVoid() {
+    void testUserVoid() {
         user = new User();
         assertNotNull(user);
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         assertEquals("1", user.getId());
     }
 
     @Test
-    public void testGetName() {
+    void testGetName() {
         assertEquals("Test", user.getName());
     }
 
     @Test
-    public void testSetName() {
+    void testSetName() {
         user.setName("TestUser");
         assertEquals("TestUser", user.getName());
     }
 
     @Test
-    public void testGetFamilyName() {
+    void testGetFamilyName() {
         assertEquals("User", user.getFamilyName());
     }
 
     @Test
-    public void testSetFamilyName() {
+    void testSetFamilyName() {
         user.setFamilyName("UserTest");
         assertEquals("UserTest", user.getFamilyName());
     }
 
     @Test
-    public void testGetFractions() {
+    void testGetFractions() {
         assertEquals(3, user.getFractions().size());
     }
 
     @Test
-    public void testSetFractions() {
+    void testSetFractions() {
         List<Fraction> fractions = List.of(new Fraction(), new Fraction());
         user.setFractions(fractions);
         assertEquals(2, user.getFractions().size());
     }
 
     @Test
-    public void testAddFraction() {
+    void testAddFraction() {
         user.addFraction(new Fraction());
         assertEquals(4, user.getFractions().size());
     }
 
     @Test
-    public void testFullName() {
+    void testFullName() {
         assertEquals("Test User", user.fullName());
     }
 
     @Test
-    public void testInitials() {
+    void testInitials() {
         assertEquals("T.", user.initials());
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         String expectedString = "User{" +
                 "id='1'" +
                 ", name='Test'" +
