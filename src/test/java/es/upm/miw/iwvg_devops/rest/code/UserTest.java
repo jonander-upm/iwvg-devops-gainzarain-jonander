@@ -87,7 +87,7 @@ public class UserTest {
                 "id='1'" +
                 ", name='Test'" +
                 ", familyName='User'" +
-                ", fractions=[Fraction{}, Fraction{}, Fraction{}]" +
+                ", fractions=" + user.getFractions() +
                 '}';
         assertEquals(expectedString, user.toString());
     }
