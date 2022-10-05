@@ -24,4 +24,12 @@ public class Searches {
                 .flatMap(user -> user.getFractions().stream())
                 .reduce(Fraction::multiply).orElse(new Fraction());
     }
+
+    public Fraction findFirstProperFractionByUserId(String id) {
+        return new UsersDatabase().findAll()
+                .filter(user -> user.getId().equals(id))
+                .flatMap(user -> user.getFractions().stream())
+                .filter(Fraction::isProper)
+                .findFirst().orElse(null);
+    }
 }
