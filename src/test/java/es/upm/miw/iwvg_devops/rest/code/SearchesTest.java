@@ -1,5 +1,6 @@
 package es.upm.miw.iwvg_devops.rest.code;
 
+import es.upm.miw.iwvg_devops.code.Fraction;
 import es.upm.miw.iwvg_devops.code.Searches;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,5 +34,13 @@ public class SearchesTest {
     @Test
     void testFindUserIdBySomeProperFraction() {
         assertEquals(List.of("1", "2", "3", "5", "6"), searches.findUserIdBySomeProperFraction().collect(Collectors.toList()));
+    }
+
+    @Test
+    void testFindFractionMultiplicationByUserFamilyName() {
+        assertEquals(0.0, searches.findFractionMultiplicationByUserFamilyName("Fernandez").decimal());
+        assertEquals(-0.0, searches.findFractionMultiplicationByUserFamilyName("Blanco").decimal());
+        assertEquals(-0.05, searches.findFractionMultiplicationByUserFamilyName("López").decimal());
+        assertEquals(NaN, searches.findFractionMultiplicationByUserFamilyName("Torres").decimal());
     }
 }
