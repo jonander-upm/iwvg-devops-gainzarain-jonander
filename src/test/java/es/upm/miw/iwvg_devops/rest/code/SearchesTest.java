@@ -29,4 +29,9 @@ public class SearchesTest {
         assertEquals(List.of(0.0, 0.0),
                 searches.findDecimalImproperFractionByUserName("Antonio").collect(Collectors.toList()));
     }
+
+    @Test
+    void testFindUserIdBySomeProperFraction() {
+        assertEquals(List.of("1", "2", "3", "5", "6"), searches.findUserIdBySomeProperFraction().collect(Collectors.toList()));
+    }
 }
