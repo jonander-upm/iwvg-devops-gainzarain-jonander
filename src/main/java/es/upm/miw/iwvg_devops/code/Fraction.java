@@ -60,7 +60,7 @@ public class Fraction {
     }
 
     public boolean isProper() {
-        return numerator > denominator;
+        return numerator >= denominator;
     }
 
     public boolean isImproper() {
