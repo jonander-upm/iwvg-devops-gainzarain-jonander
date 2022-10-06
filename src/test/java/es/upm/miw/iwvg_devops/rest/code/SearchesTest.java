@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.lang.Double.NaN;
-import static java.lang.Double.POSITIVE_INFINITY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SearchesTest {
     Searches searches;
@@ -23,19 +21,19 @@ public class SearchesTest {
 
     @Test
     void testFindDecimalImproperFractionByUserName() {
-        assertEquals(List.of(0.0, 1.0, 0.2, 0.5, 1.0),
+        assertEquals(List.of(0.0, 0.2, 0.5),
                 searches.findDecimalImproperFractionByUserName("Oscar").collect(Collectors.toList()));
         assertEquals(List.of(-0.2, 0.5),
                 searches.findDecimalImproperFractionByUserName("Ana").collect(Collectors.toList()));
-        assertEquals(List.of(1.0, 1.0, NaN, 1.0),
-                searches.findDecimalImproperFractionByUserName("Paula").collect(Collectors.toList()));
+        assertEquals(0,
+                searches.findDecimalImproperFractionByUserName("Paula").count());
         assertEquals(List.of(0.0, 0.0),
                 searches.findDecimalImproperFractionByUserName("Antonio").collect(Collectors.toList()));
     }
 
     @Test
     void testFindUserIdBySomeProperFraction() {
-        assertEquals(List.of("1", "2", "3", "5", "6"), searches.findUserIdBySomeProperFraction().collect(Collectors.toList()));
+        assertEquals(List.of("1", "2", "3", "4", "5", "6"), searches.findUserIdBySomeProperFraction().collect(Collectors.toList()));
     }
 
     @Test
@@ -48,11 +46,11 @@ public class SearchesTest {
 
     @Test
     void findFirstProperFractionByUserId() {
-        assertEquals(2, searches.findFirstProperFractionByUserId("1").decimal());
+        assertEquals(1, searches.findFirstProperFractionByUserId("1").decimal());
         assertEquals(2, searches.findFirstProperFractionByUserId("2").decimal());
         assertEquals(-0.5, searches.findFirstProperFractionByUserId("3").decimal());
-        assertNull(searches.findFirstProperFractionByUserId("4"));
+        assertEquals(1, searches.findFirstProperFractionByUserId("4").decimal());
         assertEquals(-0.0, searches.findFirstProperFractionByUserId("5").decimal());
-        assertEquals(POSITIVE_INFINITY, searches.findFirstProperFractionByUserId("6").decimal());
+        assertEquals(NaN, searches.findFirstProperFractionByUserId("6").decimal());
     }
 }
